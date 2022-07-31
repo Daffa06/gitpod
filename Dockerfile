@@ -13,6 +13,10 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     fish sudo passwd
 
+# git config
+RUN git config --global user.email "kumaraprastya@gmail.com"
+RUN git config --global user.name "Daffa06"
+
 # sudo hax
 RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /usr/bin/fish -p gitpod gitpod \
     && sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers \
