@@ -1,5 +1,5 @@
 # from image 
-FROM xealea/xea:01
+FROM debian:latest
 
 # user
 USER root
