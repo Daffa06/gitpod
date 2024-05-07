@@ -13,7 +13,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y git fish sudo
 
 # add user
-RUN useradd -m -p $(openssl passwd -1 "0000") Daffa06
+RUN useradd -m -p $(openssl passwd -1 "0000") -U Daffa06
 
 # script paswd
 COPY set_password.sh /
