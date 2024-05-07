@@ -7,15 +7,10 @@ USER root
 # setup env
 ARG DEBIAN_FRONTEND=noninteractive
 
-# remove file apt lock
-RUN rm -rf /var/lib/apt/lists/*
-
-# fix missing file
-RUN apt-get update --fix-missing
-
 # package
-RUN apt-get update -qq && apt-get upgrade -y && apt-get install --no-install-recommends -y \
-    apt-get install -y git
+RUN apt-get update -qq && \
+    apt-get upgrade -y && \
+    apt-get install --no-install-recommends -y git
 
 # fish terminal add
 RUN apt-get update && apt-get install -y fish
