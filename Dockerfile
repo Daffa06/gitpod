@@ -12,8 +12,12 @@ RUN apt-get update -qq && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \
     apt-get install -y git
-    apt-get install -y fish
-    sudo passwd
+
+# fish terminal add
+RUN apt-get update && apt-get install -y fish
+
+# sudo    
+RUN sudo passwd
 
 # git config
 RUN git config --global user.email "kumaraprastya@gmail.com"
