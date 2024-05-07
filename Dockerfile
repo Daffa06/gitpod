@@ -12,7 +12,8 @@ RUN apt-get update -qq && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \
     apt-get install -y git
-    fish sudo passwd
+    apt-get install -y fish
+    sudo passwd
 
 # git config
 RUN git config --global user.email "kumaraprastya@gmail.com"
@@ -24,7 +25,7 @@ RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /usr/bin/fish -p gitpod gitp
     && chmod 0440 /etc/sudoers
 
 # shell cmd
-SHELL ["fish", "--command"]
+SHELL ["/usr/bin/fish", "-c"]
 
 # set shell use fish
 RUN chsh -s /usr/bin/fish
