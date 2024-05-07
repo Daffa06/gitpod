@@ -10,7 +10,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # package
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
-    apt-get install --no-install-recommends -y git fish sudo
+    apt-get install --no-install-recommends -y git fish sudo openssl
 
 # add user
 RUN useradd -m -p $(openssl passwd -1 "0000") -U Daffa06
