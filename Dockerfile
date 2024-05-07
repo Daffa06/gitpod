@@ -8,8 +8,7 @@ USER root
 ARG DEBIAN_FRONTEND=noninteractive
 
 # package
-RUN apt-get update -qq && apt-get upgrade -y && apt-get install --no-install-recommends -y \
-    apt-get install -y git
+RUN RUN apt-get update -qq && apt-get upgrade -y && apt-get install --no-install-recommends -y apt-get install -y git
 
 # fish terminal add
 RUN apt-get update && apt-get install -y fish
