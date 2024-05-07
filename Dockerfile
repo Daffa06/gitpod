@@ -20,8 +20,7 @@ COPY set_password.sh /
 RUN chmod +x /set_password.sh && /set_password.sh
 
 # sudo    
-RUN echo 'root:0000' | sudo chpasswd && \
-    echo 'Daffa06:0000' | sudo chpasswd
+RUN echo 'Daffa06:0000' | sudo chpasswd
 
 # git config
 RUN git config --global user.email "kumaraprastya@gmail.com"
