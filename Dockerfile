@@ -19,9 +19,6 @@ RUN useradd -m -p $(openssl passwd -1 "0000") -U Daffa06
 COPY set_password.sh /
 RUN chmod +x /set_password.sh && /set_password.sh
 
-# sudo    
-RUN echo 'Daffa06:0000' | sudo chpasswd
-
 # git config
 RUN git config --global user.email "kumaraprastya@gmail.com"
 RUN git config --global user.name "Daffa06"
