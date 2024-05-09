@@ -23,6 +23,14 @@ RUN chmod +x /set_password.sh && /set_password.sh
 RUN git config --global user.email "kumaraprastya@gmail.com"
 RUN git config --global user.name "Daffa06"
 
+# generate SSH key
+RUN mkdir -p /root/.ssh && \
+    ssh-keygen -t ed25519 -C "gitpod@user.com" -f /root/.ssh/id_ed25519 -N ''
+
+# evaluate ssh-agent and add SSH key
+RUN eval `ssh-agent -s` && \
+    ssh-add /root/.ssh/id_ed25519
+
 # sudo hax
 RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /usr/bin/fish -p gitpod gitpod \
     && sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers \
