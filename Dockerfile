@@ -37,14 +37,14 @@ RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /usr/bin/fish -p gitpod gitp
     && sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers \
     && chmod 0440 /etc/sudoers
 
-# shell cmd
-SHELL ["/usr/bin/fish", "-c"]
+# Set default shell to bash
+SHELL ["/bin/bash", "-c"]
 
-# set shell use fish
-RUN chsh -s /usr/bin/fish
+# Set shell use bash
+RUN chsh -s /bin/bash
 
-# env fish
-ENV SHELL /usr/bin/fish
+# env bash
+ENV SHELL /bin/bash
 
-# entrypoint
-ENTRYPOINT [ "fish" ]
+# Entry point: start with bash, then switch to fish
+ENTRYPOINT ["/bin/bash", "-c", "fish"]
