@@ -11,16 +11,13 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y git fish sudo openssl openssh-client
-# env from gitpod
-ENV GIT_USER_EMAIL="${GITPOD_EMAIL}" \
-    GIT_USER_NAME="${GITPOD_USER}"
     
 # add user
-RUN useradd -m -p $(openssl passwd -1 "0000") -U "$GITPOD_USER_NAME"
+RUN useradd -m -p $(openssl passwd -1 "0000") -U "$USER"
 
 # git config
-RUN git config --global user.email "$GIT_USER_EMAIL" && \
-    git config --global user.name "$GIT_USER_NAME"
+RUN git config --global user.email "$EMAIL" && \
+    git config --global user.name "$USER"
 
 # generate SSH key
 RUN mkdir -p /root/.ssh && \
