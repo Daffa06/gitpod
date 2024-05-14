@@ -13,8 +13,8 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y git fish sudo openssl openssh-client
 
 # Added ARG for email and user variables
-ARG EMAIL
-ARG USER
+ARG EMAIL USER
+ENV EMAIL=${EMAIL} USER=${USER}
     
 # add user
 ARG USER=default_user
