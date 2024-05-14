@@ -1,6 +1,3 @@
-image:
-  file: Dockerfile
-
 tasks:
   - name: Gitpod Environment Custom
     command: |
@@ -11,3 +8,6 @@ tasks:
       echo "$EMAIL" "$USER" && \
 
       yarn start
+
+image:
+  file: Dockerfile
