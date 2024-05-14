@@ -1,6 +1,6 @@
 tasks:
   - name: Gitpod Environment Custom
-    command:
+    command: >
       # Export from custom variables
       export EMAIL="$email" USER="$user" && \
       
