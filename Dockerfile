@@ -13,14 +13,10 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y git fish sudo openssl openssh-client
 
 # add user
-RUN useradd -m -p $(openssl passwd -1 "0000") -U Daffa06
-
-# script paswd
-COPY set_password.sh /
-RUN chmod +x /set_password.sh && /set_password.sh
+RUN useradd -m -p $(openssl passwd -1 "0000") -U "${GITPOD_USER}"
 
 # env from gitpod
-ENV GIT_USER_EMAIL=$GITPOD_EMAIL \
+ENV GIT_USER_EMAIL="${GITPOD_EMAIL}" \
     GIT_USER_NAME="${GITPOD_USER}"
 
 # git config
