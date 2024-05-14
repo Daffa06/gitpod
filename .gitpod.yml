@@ -7,8 +7,6 @@ tasks:
       # Check again for make sure same
       echo "$EMAIL" "$USER" && \
 
-      docker build --build-arg USER="$user" -t my_image
-
       yarn start
 
 image:
