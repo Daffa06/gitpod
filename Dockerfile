@@ -12,8 +12,8 @@ RUN apt-get update -qq && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y git fish sudo openssl openssh-client
 
-# CMD for run yarn
-CMD ["yarn", "start"]
+# use bash for building
+SHELL ["/bin/bash", "-c", "yarn start"]
     
 # add user
 ARG USER=default_user
