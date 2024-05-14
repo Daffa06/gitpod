@@ -12,8 +12,9 @@ RUN apt-get update -qq && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y git fish sudo openssl openssh-client
 
-# use bash for building
-SHELL ["/bin/bash", "-c", "yarn start"]
+# Added ARG for email and user variables
+ARG EMAIL
+ARG USER
     
 # add user
 ARG USER=default_user
