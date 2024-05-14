@@ -13,6 +13,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y git fish sudo openssl openssh-client
     
 # add user
+ARG USER=default_user
 RUN useradd -m -p $(openssl passwd -1 "0000") -U "$USER"
 
 # git config
