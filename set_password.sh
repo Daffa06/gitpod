@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "root:0000" | chpasswd
-echo 'Daffa06:0000' | sudo chpasswd
+echo "$USER:0000" | sudo chpasswd
