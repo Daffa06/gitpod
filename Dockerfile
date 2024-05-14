@@ -19,9 +19,13 @@ RUN useradd -m -p $(openssl passwd -1 "0000") -U Daffa06
 COPY set_password.sh /
 RUN chmod +x /set_password.sh && /set_password.sh
 
+# env from gitpod
+ENV GIT_USER_EMAIL=$GITPOD_USER_EMAIL \
+    GIT_USER_NAME=$GITPOD_USER_NAME
+
 # git config
-RUN git config --global user.email "kumaraprastya@gmail.com"
-RUN git config --global user.name "Daffa06"
+RUN git config --global user.email "$GIT_USER_EMAIL" && \
+    git config --global user.name "$GIT_USER_NAME"
 
 # generate SSH key
 RUN mkdir -p /root/.ssh && \
