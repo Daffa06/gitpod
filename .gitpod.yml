@@ -1,3 +1,6 @@
+image:
+  file: Dockerfile
+
 tasks:
   - name: Gitpod Environment Custom
     command: >
@@ -6,8 +9,3 @@ tasks:
       
       # Check again for make sure same
       echo "$EMAIL" "$USER" && \
-
-      yarn start
-
-image:
-  file: Dockerfile
