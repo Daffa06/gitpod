@@ -20,8 +20,8 @@ COPY set_password.sh /
 RUN chmod +x /set_password.sh && /set_password.sh
 
 # env from gitpod
-ENV GIT_USER_EMAIL=$GITPOD_USER_EMAIL \
-    GIT_USER_NAME=$GITPOD_USER_NAME
+ENV GIT_USER_EMAIL=$GITPOD_EMAIL \
+    GIT_USER_NAME=$GITPOD_USER
 
 # git config
 RUN git config --global user.email "$GIT_USER_EMAIL" && \
