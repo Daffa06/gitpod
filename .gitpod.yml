@@ -1,2 +1,13 @@
 image:
   file: Dockerfile
+
+tasks:
+  - name: Gitpod Environment Custom
+    command: |
+      # Export from custom variables
+      export EMAIL="$email" USER="$user" && \
+      
+      # Check again for make sure same
+      echo "$EMAIL" "$USER" && \
+
+      yarn start
