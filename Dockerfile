@@ -11,7 +11,7 @@ ARG UBUNTU_FRONTEND=noninteractive
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
     apt-get install -y git fish sudo openssl openssh-client bc bison build-essential ccache curl flex glibc-source g++-multilib gcc-multilib gnupg neofetch && \
-    tmate rsync schedtool python2 tmate ssh
+    rsync schedtool python2 tmate ssh
 
 # Added ARG for email and user variables
 ARG EMAIL USER
