@@ -10,7 +10,7 @@ ARG UBUNTU_FRONTEND=noninteractive
 # package
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
-    apt-get install -y git fish sudo openssl openssh-client bc bison build-essential ccache curl flex glibc-source g++-multilib gcc-multilib gnupg neofetch
+    apt-get install -y git wget fish sudo openssl openssh-client bc bison build-essential ccache curl flex glibc-source g++-multilib gcc-multilib gnupg neofetch
 
 # Cache and environment configuration
 ENV CACHE=1
