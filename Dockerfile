@@ -12,6 +12,14 @@ RUN apt-get update -qq && \
     apt-get upgrade -y && \
     apt-get install -y git fish sudo openssl openssh-client bc bison build-essential ccache curl flex glibc-source g++-multilib gcc-multilib gnupg neofetch
 
+# Cache and environment configuration
+ENV CACHE=1
+RUN if [ "$CACHE" -eq 1 ]; then \
+        ccache -M 256G && \
+        export USE_CCACHE=1; \
+    fi
+ENV LC_ALL=C
+
 # Added ARG for email and user variables
 ARG EMAIL USER
 ENV EMAIL=${EMAIL} USER=${USER}
@@ -52,11 +60,3 @@ ENV SHELL /bin/bash
 
 # Entry point: start with bash, then switch to fish
 ENTRYPOINT ["/bin/bash", "-c", "fish"]
-
-# Cache and environment configuration
-ENV CACHE=1
-RUN if [ "$CACHE" -eq 1 ]; then \
-        ccache -M 256G && \
-        export USE_CCACHE=1; \
-    fi
-ENV LC_ALL=C
