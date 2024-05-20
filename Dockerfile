@@ -10,8 +10,7 @@ ARG UBUNTU_FRONTEND=noninteractive
 # package
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
-    apt-get install -y git fish sudo openssl openssh-client bc bison build-essential ccache curl flex glibc-source g++-multilib gcc-multilib gnupg neofetch && \
-    python2 ssh
+    apt-get install -y git fish sudo openssl openssh-client bc bison build-essential ccache curl flex glibc-source g++-multilib gcc-multilib gnupg neofetch
 
 # Added ARG for email and user variables
 ARG EMAIL USER
