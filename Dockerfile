@@ -4,12 +4,13 @@ FROM daffa06/soulvibe-kernel:v1
 # user
 USER root
 
-# Copy the packages environment script from build context if not present in the base image
-RUN if [ ! -f /usr/local/src/packages_env.sh ]; then \
-        echo "packages_env.sh not found in base image. Copying from build context..."; \
-        cp /path/in/build/context/packages_env.sh /usr/local/src/packages_env.sh; \
-    fi && \
-    /usr/local/src/packages_env.sh
+# Verify the presence and execute the script
+RUN if [ -f /usr/src/packages_env.sh ]; then \
+        chmod +x /usr/src/packages_env.sh && \
+        /usr/src/packages_env.sh; \
+    else \
+        echo "packages_env.sh not found in base image"; \
+    fi
 
 # Added ARG for email and user variables
 ARG EMAIL USER
