@@ -1,24 +1,15 @@
 # from image 
-FROM ubuntu:24.04
+FROM daffa06/soulvibe-kernel:v1
 
 # user
 USER root
 
-# setup env
-ARG UBUNTU_FRONTEND=noninteractive
-
-# package
-RUN apt-get update -qq && \
-    apt-get upgrade -y && \
-    apt-get install -y git wget fish sudo openssl openssh-client bc bison build-essential ccache curl flex glibc-source g++-multilib gcc-multilib gnupg neofetch
-
-# Cache and environment configuration
-ENV CACHE=1
-RUN if [ "$CACHE" -eq 1 ]; then \
-        ccache -M 256G && \
-        export USE_CCACHE=1; \
-    fi
-ENV LC_ALL=C
+# Copy the packages environment script from build context if not present in the base image
+RUN if [ ! -f /usr/local/src/packages_env.sh ]; then \
+        echo "packages_env.sh not found in base image. Copying from build context..."; \
+        cp /path/in/build/context/packages_env.sh /usr/local/src/packages_env.sh; \
+    fi && \
+    /usr/local/src/packages_env.sh
 
 # Added ARG for email and user variables
 ARG EMAIL USER
