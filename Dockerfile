@@ -17,7 +17,6 @@ ARG EMAIL USER
 ENV EMAIL=${EMAIL} USER=${USER}
     
 # add user
-ARG USER=default_user
 RUN useradd -m -p $(openssl passwd -1 "0000") -U "$USER"
 
 # Copy and run the script set_password.sh
