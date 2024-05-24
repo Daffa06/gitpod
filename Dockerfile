@@ -30,7 +30,7 @@ RUN git config --global user.email "$EMAIL" && \
 
 # generate SSH key
 RUN mkdir -p /root/.ssh && \
-    ssh-keygen -t ed25519 -C "gitpod@user.com" -f /root/.ssh/id_ed25519 -N ''
+    ssh-keygen -t ed25519 -C "$EMAIL" -f /root/.ssh/id_ed25519 -N ''
 
 # evaluate ssh-agent and add SSH key
 RUN eval `ssh-agent -s` && \
