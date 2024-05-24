@@ -3,37 +3,39 @@ image:
 
 tasks:
   - name: Setup Environment
-    command: |
+    init: |
+      sudo bash -c "
       # Export from custom variables
-      export EMAIL="$email" USER="$user"
+      export EMAIL='$email' USER='$user'
 
       # Create user with specified USER and EMAIL environment variables
-      if id "$USER" &>/dev/null; then
-          echo "User $USER already exists."
+      if id '$USER' &>/dev/null; then
+          echo 'User $USER already exists.'
       else
-          useradd -m -p $(openssl passwd -1 "0000") -U "$USER"
+          useradd -m -p \$(openssl passwd -1 '0000') -U '$USER'
       fi
 
       # Run set_password.sh script
-      if [ -f /tmp/set_password.sh ]; then
-          chmod +x /tmp/set_password.sh && /tmp/set_password.sh
+      if [ -f set_password.sh ]; then
+          chmod +x set_password.sh && set_password.sh
       else
-          echo "set_password.sh not found in /tmp/"
+          echo 'set_password.sh not found'
       fi
 
       # Configure git with the provided EMAIL and USER
-      git config --global user.email "$EMAIL"
-      git config --global user.name "$USER"
+      git config --global user.email '$EMAIL'
+      git config --global user.name '$USER'
 
       # Generate SSH key for the root user if it doesn't exist
       if [ ! -f /root/.ssh/id_ed25519 ]; then
           mkdir -p /root/.ssh
-          ssh-keygen -t ed25519 -C "$EMAIL" -f /root/.ssh/id_ed25519 -N ''
+          ssh-keygen -t ed25519 -C '$EMAIL' -f /root/.ssh/id_ed25519 -N ''
       fi
 
       # Evaluate ssh-agent and add SSH key
-      eval "$(ssh-agent -s)"
+      eval \$(ssh-agent -s)
       ssh-add /root/.ssh/id_ed25519
 
       # Check again to make sure they are correct
-      echo "$EMAIL" "$USER"
+      echo '$EMAIL' '$USER'
+      "
